@@ -39,6 +39,7 @@ body {
   border-bottom: 1px solid #74EBD5;
   color: #FFFFFF;
   display: flex;
+  width: 200px;
   flex-direction: column;
   padding-bottom: 15px;
   row-gap: 20px;
@@ -48,20 +49,27 @@ body {
   justify-content: end;
   align-items: end;
   flex: 1;
+  width: 220px;
+  overflow: scroll;
   font-size: 1.2rem;
   font-weight: 300;
 }
 .container .calc-area .screen .result-area {
   display: flex;
   align-items: center;
+  width: 240px;
+  overflow: scroll;
   justify-content: space-between;
   font-weight: 400;
 }
 .container .calc-area .screen .result-area .result {
   font-size: 2rem;
+  width: 240px;
+  overflow: scroll;
 }
 .container .calc-area .screen .result-area.hidden {
   display: none;
+  width: 240px;
 }
 .container .calc-area .keyboard {
   display: flex;
