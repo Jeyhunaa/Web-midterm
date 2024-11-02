@@ -89,17 +89,35 @@ function backspace() {
     updateDisplay(currentInput);
 }
 
+
 function toggleSign() {
-    const lastNumberMatch = currentInput.match(/(-?\d+(\.\d*)?)$/);
+    const lastNumberMatch = currentInput.match(/-?\d+(\.\d+)?$/);
+    
     if (lastNumberMatch) {
-        const lastNumber = lastNumberMatch[0];
-        const toggledNumber = lastNumber.startsWith('-')
-            ? lastNumber.slice(1)
-            : '-' + lastNumber;
-        currentInput = currentInput.slice(0, -lastNumber.length) + toggledNumber;
-        updateDisplay(currentInput);
+        let lastNumber = lastNumberMatch[0];
+        console.log(lastNumber);
+
+        let negatedNumber; 
+
+        if (lastNumber.startsWith('-')) {
+            const beforeNumber = currentInput.slice(0, currentInput.length - lastNumber.length);
+            const isFirstNumber = beforeNumber.trim() === '' || /[\+\-\*\/]$/.test(beforeNumber);
+            
+            if (isFirstNumber) {
+                negatedNumber = lastNumber.slice(1); 
+            } else {
+                negatedNumber = lastNumber.replace('-', '+'); 
+            }
+        } else {
+            negatedNumber = '-' + lastNumber; 
+        }
+
+        currentInput = currentInput.slice(0, -lastNumber.length) + negatedNumber;
+        updateDisplay(currentInput.replace(/\*/g, 'x'));
     }
 }
+
+
 
 function addOperatorToInput(operator) {
     if (currentInput && !/[\+\-X/%]$/.test(currentInput)) {
